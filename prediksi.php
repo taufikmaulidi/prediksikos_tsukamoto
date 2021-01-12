@@ -1,0 +1,264 @@
+<?php
+
+        $jarak = $_POST['jarak'];
+        $ukuran = $_POST['ukuran'];
+        $alfa = array(18);
+        $z = array(18);
+        $fasilitas = 0;
+
+        $fasilitas = $_POST['fasilitas-1']+$_POST['fasilitas-2']+$_POST['fasilitas-3']+$_POST['fasilitas-4']+$_POST['fasilitas-5']+$_POST['fasilitas-6']+$_POST['fasilitas-7']+$_POST['fasilitas-8']+$_POST['fasilitas-9']+$_POST['fasilitas-10'];
+        $hasil = "Rp. ";
+
+    function z_result(){
+        $z_result = "";
+        foreach ($z_result as $key => $value) {
+            $z_result = $alfa[$value];
+        }
+    }
+
+    function findMin($x,$y,$z){
+        if ($x <= $y && $x <= $z ){
+            return $x;
+        }elseif ($y <= $x && $y <= $z){
+            return $y;
+        }else{
+            return $z;
+        }
+    }
+
+    function fasilitasBiasa($fasilitas){
+        if ($fasilitas <= 20){
+            return 1;
+        }elseif ($fasilitas > 20&&$fasilitas <70) {
+            return (70-$fasilitas/50);
+            // return "lebih 20 dan kurang 70";
+        }else{
+            return 0;
+        }
+    }
+
+    function fasilitasLengkap($fasilitas){
+        if ($fasilitas >= 70){
+            return 1;
+        }elseif ($fasilitas > 20&&$fasilitas <70) {
+            return ($fasilitas-20)/50;
+        }else{
+            return 0;
+        }
+    }
+
+    function jarakDekat($jarak){
+        if ($jarak <=1){
+            return 1;
+        }elseif ($jarak > 1 && $jarak <3){
+            return (3-$jarak)/2;
+        }else{
+            return 0;
+        }
+    }
+
+    function jarakJauh($jarak){
+        if ($jarak >=7){
+            return 1;
+        }elseif ($jarak > 5 && $jarak <7){
+            return ($jarak-5)/2;
+        }else{
+            return 0;
+        }
+    }
+
+    function ukuranSempit($ukuran){
+        if ($ukuran <=4){
+            return 1;
+        }elseif ($ukuran > 5 && $ukuran < 8){
+            return (8-$ukuran)/4;
+        }else{
+            return 0;
+        }
+    }
+
+    function ukuranSedang($ukuran){
+        if($ukuran >= 8 && $ukuran <= 15){
+            return 1;
+        }elseif($ukuran > 4 && $ukuran < 8){
+            return ($ukuran - 4) / 4;
+        }elseif($ukuran > 15 && $ukuran < 18){
+            return (18 - $ukuran) / 3;
+        }else{
+            return 0;
+        }
+    }
+
+    function ukuranLuas($ukuran){
+        if ($ukuran >= 18){
+            return 1;
+        }elseif ($ukuran >15 && $ukuran <18){
+            return ($ukuran-15)/3;
+        }else{
+            return 0;
+        }
+    }
+
+    function hargaMurah($alfa){
+        if ($alfa>0 && $alfa <1){
+            return (900-$alfa *500);
+        }elseif ($alfa ==1) {
+            return 300;
+        }else{
+            return 900;
+        }
+    }
+
+    function hargaMahal($alfa){
+        if ($alfa>0 && $alfa <1){
+            return (300-$alfa *600);
+        }elseif ($alfa ==1) {
+            return 900;
+        }else{
+            return 300;
+        }
+    }
+
+    function aturan(){
+        $alfa[0] = findMin(fasilitasBiasa($fasilitas),ukuranSempit($ukuran),jarakDekat($jarak));
+        $z[0] = hargaMahal($alfa[0]);
+
+        $alfa[1] = findMin(fasilitasBiasa($fasilitas),ukuranSempit($ukuran),jarakJauh($jarak));
+        $z[1] = hargaMurah(alfa[1]);
+
+        $alfa[2] = findMin(fasilitasBiasa($fasilitas),ukuranSedang($ukuran),jarakJauh($jarak));
+        $z[2] = hargaMahal($alfa[2]);
+
+    }
+
+?>
+<htlml>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fuzzy Tsukamoto</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/creative.min.css" rel="stylesheet">
+    <link href="css/input.css" rel="stylesheet">
+
+    <script src="js/jquery.js"></script>
+    <!-- <script src="js/tsukamoto.js"></script> -->
+
+</head>
+
+<body id="page-top">
+    <form method="post" autocomplete="off">
+        <div class="form-group row">
+            <label class="col-md-4 control-label text-right" for="jarak">Jarak Kos</label>
+            <div class="col-md-4">
+                <input id="jarak" name="jarak" type="number" placeholder="Jarak" class="form-control input-md">
+            </div>
+            <label class="control-label text-left" for="km">km</label>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-4 control-label text-right" for="ukuran">Ukuran Kamar</label>
+            <div class="col-md-4">
+                <input id="ukuran" name="ukuran" type="number" placeholder="Ukuran kamar" class="form-control input-md">
+            </div>
+            <label class="control-label text-left" for="m">m<sup>2</sup></label>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label text-right" for="fasilitasKos">Fasilitas</label>
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label for="fasilitas-0">
+                    <input type="checkbox" name="fasilitas-1" id="fasilitas-0" value="8">
+                    Tempat Tidur
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-1">
+                    <input type="checkbox" name="fasilitas-2" id="fasilitas-1" value="8">
+                    Almari
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-2">
+                    <input type="checkbox" name="fasilitas-3" id="fasilitas-2" value="8">
+                    Meja
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-3">
+                    <input type="checkbox" name="fasilitas-4" id="fasilitas-3" value="10">
+                    Kamar Mandi Dalam
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-4">
+                    <input type="checkbox" name="fasilitas-5" id="fasilitas-4" value="10">
+                    Dapur
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-5">
+                    <input type="checkbox" name="fasilitas-6" id="fasilitas-5" value="11">
+                    Wi-Fi
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-6">
+                    <input type="checkbox" name="fasilitas-7" id="fasilitas-6" value="11">
+                    TV
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-7">
+                    <input type="checkbox" name="fasilitas-8" id="fasilitas-7" value="12">
+                    AC
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-8">
+                    <input type="checkbox" name="fasilitas-9" id="fasilitas-8" value="11">
+                    Meja dan Kursi Belajar
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="fasilitas-9">
+                    <input type="checkbox" name="fasilitas-10" id="fasilitas-9" value="11">
+                    Laundry
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center">
+            <button type="submit" id="proses" class="proses">PROSES</button>
+        </div>
+
+    </form>
+    <div class="col-lg-6 text-center">
+        <h3 style="display: inline">Hasil Prediksi</h3>
+        <input type="text" name="hasil" id="hasil" class="hasil" style=" border:none" />
+    </div>
+    <label>test variable</label>
+    <?php echo aturan();?>    
+</body>
+</html>
+
+
+

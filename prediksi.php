@@ -129,6 +129,9 @@
         $alfa[2] = findMin(fasilitasBiasa($fasilitas),ukuranSedang($ukuran),jarakJauh($jarak));
         $z[2] = hargaMahal($alfa[2]);
 
+        $alfa[3] = findMin(fasilitasBiasa($fasilitas),ukuranSedang($ukuran),jarakDekat($jarak));
+        $z[3] = hargaMahal($alfa[3]);
+
     }
 
 ?>

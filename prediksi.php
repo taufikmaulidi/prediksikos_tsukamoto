@@ -57,6 +57,18 @@
         }
     }
 
+    function jarakSedang($jarak){
+        if ($jarak >= 3 && $jarak <= 5) {
+            return 1;
+        }elseif ($jarak > 1 && $jarak < 3) {
+            return ($jarak - 1) / 2;
+        }elseif ($jarak > 5 && $jarak < 7) {
+            return (7 - $jarak) / 2;
+        }else {
+            return 0;
+        }
+    }
+
     function jarakJauh($jarak){
         if ($jarak >=7){
             return 1;
@@ -131,6 +143,48 @@
 
         $alfa[3] = findMin(fasilitasBiasa($fasilitas),ukuranSedang($ukuran),jarakDekat($jarak));
         $z[3] = hargaMahal($alfa[3]);
+
+        $alfa[4] = findMin(fasilitasBiasa($fasilitas),ukuranSedang($ukuran),jarakSedang($jarak));
+        $z[4] = hargaMurah($alfa[4]);
+
+        $alfa[5] = findMin(fasilitasBiasa($fasilitas),ukuranSedang($ukuran),jarakJauh($jarak));
+        $z[5] = hargaMurah($alfa[5]);
+
+        $alfa[6] = findMin(fasilitasBiasa($fasilitas),ukuranLuas($ukuran),jarakDekat($jarak));
+        $z[6] = hargaMahal($alfa[6]);
+
+        $alfa[7] = findMin(fasilitasBiasa($fasilitas),ukuranLuas($ukuran),jarakSedang($jarak));
+        $z[7] = hargaMurah($alfa[7]);
+
+        $alfa[8] = findMin(fasilitasBiasa($fasilitas),ukuranLuas($ukuran),jarakJauh($jarak));
+        $z[8] = hargaMurah($alfa[8]);
+
+        $alfa[9] = findMin(fasilitasLengkap($fasilitas),ukuranSempit($ukuran),jarakDekat($jarak));
+        $z[9] = hargaMahal($alfa[9]);
+
+        $alfa[10] = findMin(fasilitasLengkap($fasilitas),ukuranSempit($ukuran),jarakSedang($jarak));
+        $z[10] = hargaMahal($alfa[10]);
+
+        $alfa[11] = findMin(fasilitasLengkap($fasilitas),ukuranSempit($ukuran),jarakJauh($jarak));
+        $z[11] = hargaMurah($alfa[11]);
+
+        $alfa[12] = findMin(fasilitasLengkap($fasilitas),ukuranSedang($ukuran),jarakDekat($jarak));
+        $z[12] = hargaMahal($alfa[12]);
+
+        $alfa[13] = findMin(fasilitasLengkap($fasilitas),ukuranSedang($ukuran),jarakSedang($jarak));
+        $z[13] = hargaMahal($alfa[13]);
+
+        $alfa[14] = findMin(fasilitasLengkap($fasilitas),ukuranSedang($ukuran),jarakJauh($jarak));
+        $z[14] = hargaMurah($alfa[14]);
+
+        $alfa[15] = findMin(fasilitasLengkap($fasilitas),ukuranLuas($ukuran),jarakDekat($jarak));
+        $z[15] = hargaMahal($alfa[15]);
+
+        $alfa[16] = findMin(fasilitasLengkap($fasilitas),ukuranLuas($ukuran),jarakSedang($jarak));
+        $z[16] = hargaMahal($alfa[16]);
+
+        $alfa[17] = findMin(fasilitasLengkap($fasilitas),ukuranLuas($ukuran),jarakJauh($jarak));
+        $z[17] = hargaMurah($alfa[17]);
 
     }
 

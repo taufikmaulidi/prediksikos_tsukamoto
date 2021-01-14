@@ -7,15 +7,17 @@
         $fasilitas = 0;
 
         $fasilitas = $_POST['fasilitas-1']+$_POST['fasilitas-2']+$_POST['fasilitas-3']+$_POST['fasilitas-4']+$_POST['fasilitas-5']+$_POST['fasilitas-6']+$_POST['fasilitas-7']+$_POST['fasilitas-8']+$_POST['fasilitas-9']+$_POST['fasilitas-10'];
-        $hasil = "Rp. ";
+        // $hasil = "Rp. ".prediksiHarga().;
 
-    function z_result(){
+    
         $z_result = "";
-        foreach ($z_result as $key => $value) {
-            $z_result = $alfa[$value];
-        }
-    }
+        $hasil = 0;
 
+
+    
+        if ($_POST){
+            $hasil = perhitungan($fasilitas,$ukuran,$jarak);
+        }
     function findMin($x,$y,$z){
         if ($x <= $y && $x <= $z ){
             return $x;
@@ -131,7 +133,7 @@
         }
     }
 
-    function aturan(){
+    function perhitungan($fasilitas,$ukuran,$jarak){
         $alfa[0] = findMin(fasilitasBiasa($fasilitas),ukuranSempit($ukuran),jarakDekat($jarak));
         $z[0] = hargaMahal($alfa[0]);
 
@@ -185,8 +187,22 @@
 
         $alfa[17] = findMin(fasilitasLengkap($fasilitas),ukuranLuas($ukuran),jarakJauh($jarak));
         $z[17] = hargaMurah($alfa[17]);
+        
+        //defuzzyfikasi
+        $temp_1 =0;
+        $temp_2 =0;
+
+        $hasil =0;
+        for ($i =0; $i<18; $i++){
+            $temp_1 = $temp_1+ $alfa[$i] * $z[$i];
+            $temp_2 = $temp_2+ $alfa[$i];
+        }
+
+        $hasil = $temp_1/$temp_2;
+        return $hasil;
 
     }
+
 
 ?>
 <htlml>
@@ -310,10 +326,8 @@
     </form>
     <div class="col-lg-6 text-center">
         <h3 style="display: inline">Hasil Prediksi</h3>
-        <input type="text" name="hasil" id="hasil" class="hasil" style=" border:none" />
+        <input type="text" name="hasil" id="hasil" class="hasil" value="<?php echo "Rp.".number_format($hasil).".000";?>" style=" border:none" />
     </div>
-    <label>test variable</label>
-    <?php echo aturan();?>    
 </body>
 </html>
 

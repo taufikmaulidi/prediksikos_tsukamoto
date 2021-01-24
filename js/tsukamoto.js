@@ -161,7 +161,7 @@ $(function(){
 	*  @param alfa
 	*  @return harga
 	*/
-	function hargaMurah(alfa){
+	function hargaMurah($alfa){
 		if(alfa > 0 && alfa < 1){
 			return (900 - alfa * 600);
 		}else if(alfa == 1){
@@ -176,7 +176,7 @@ $(function(){
 	*  @param alfa
 	*  @return harga
 	*/
-	function hargaMahal(alfa){
+	function hargaMahal($alfa){
 		if(alfa > 0 && alfa < 1){
 			return (300 + alfa * 600);
 		}else if(alfa == 1){

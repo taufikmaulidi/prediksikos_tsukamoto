@@ -1,4 +1,7 @@
 <?php
+
+        
+
         if ($_POST){
             $jarak = $_POST['jarak'];
             $ukuran = $_POST['ukuran'];
@@ -200,71 +203,55 @@
         return $hasil;
 
     }
+        
+
+
 ?>
-<htlml>
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!Doctype html>
+<html>
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fuzzy Tsukamoto</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <!-- <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
-
-    <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
-
-    <!-- Theme CSS -->
-    <link href="css/creative.min.css" rel="stylesheet">
-    <link href="css/input.css" rel="stylesheet">
-    <style type="text/css">
-        body{
-     /*background-image:url(https://hxwf5.files.wordpress.com/2012/08/bliss.jpg);*/
-     background-color:  #b6b6b6  ;
-     background-repeat:no-repeat;
-     background-size:cover;
-     width:100%;
-     height:70vh;
-     overflow:auto;
-     }
-    </style>
-    <script src="js/jquery.js"></script>
-    <!-- <script src="js/tsukamoto.js"></script> -->
-
+     <meta charset="UTF-8">
+     <title>Registration Form</title>
+     	<link rel="stylesheet" type="text/css" href="style.css">
+     	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
-<body id="page-top">
-    <br>
-    <br>
-    <form method="post" autocomplete="off">
-        <div class="form-group row">
-            <label class="col-md-4 control-label text-right" for="jarak">Jarak Kos</label>
-            <div class="col-md-4">
-                <input id="jarak" name="jarak" type="number" placeholder="Jarak" class="form-control input-md">
-            </div>
-            <label class="control-label text-left" for="km">km</label>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-md-4 control-label text-right" for="ukuran">Ukuran Kamar</label>
-            <div class="col-md-4">
-                <input id="ukuran" name="ukuran" type="number" placeholder="Ukuran kamar" class="form-control input-md">
-            </div>
-            <label class="control-label text-left" for="m">m<sup>2</sup></label>
-        </div>
-
-        <div class="form-group">
-            <label class="col-md-4 control-label text-right" for="fasilitasKos">Fasilitas</label>
-            <div class="col-md-4">
+<body>
+ <div class="container">
+ <!---heading---->
+     <header class="heading"> Prediksi Rumah Kost</header><hr></hr>
+	<!---Form starting----> 
+	<div class="row ">
+	 <!--- For Name---->
+         <div class="col-sm-12">
+             <div class="row">
+			     <div class="col-xs-3">
+          	         <label class="col-md-4 control-label text-right" for="jarak">Jarak Kos</label> </div>
+		         <div class="col-md-7">
+		             <input id="jarak" name="jarak" type="number" placeholder="Jarak" class="form-control input-md">
+             </div>
+		      </div>
+		 </div>
+		 
+		 
+         <div class="col-sm-12">
+		     <div class="row">
+			     <div class="col-xs-3">
+                     <label class="col-md-4 control-label" for="ukuran">Ukuran Kamar</label></div>
+				<div class="col-md-7">
+		             <input id="ukuran" name="ukuran" type="number" placeholder="Ukuran kamar" class="form-control input-md">
+                </div>
+		     </div>
+		 </div>
+		 <label class="col-md-3 control-label" for="fasilitas">Fasilitas</label>
+            <div class="col-md-5">
                 <div class="checkbox">
                     <label for="fasilitas-0">
                     <input type="checkbox" name="fasilitas-1" id="fasilitas-0" value="8">
@@ -325,19 +312,22 @@
                     Laundry
                     </label>
                 </div>
-            </div>
+            </div>     
         </div>
-        <div class="col-lg-6 text-center">
-            <button type="submit" id="proses" class="proses">PROSES</button>
+        <div class="col-sm-12">
+            <button type="submit" id="proses" class="btn btn-warning">PROSES</button>
         </div>
-
-    </form>
-    <div class="col-lg-6 text-center">
-        <h3 style="display: inline">Hasil Prediksi</h3>
+		<br>
+		<br>
+		<br>
+		<div class="col-lg-14 text-center">
+        <h4 style="display: inline">Hasil Prediksi</h4>
         <input type="text" name="hasil" id="hasil" class="hasil" value="<?php echo "Rp.".number_format($hasil).".000";?>" style=" border:none" />
+    	</div>
     </div>
-</body>
+</div>
+
+</body>		
 </html>
-
-
-
+	 
+	 
